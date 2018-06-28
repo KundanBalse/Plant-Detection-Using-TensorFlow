@@ -1,7 +1,8 @@
 # Plant-Detection-Using-TensorFlow
+
 Plant identification based on leaf structure
 
-Introduction
+## Introduction 
 
   Plants exist everywhere we live, as well as places without us. Many of them carry significant information for the development of human society. The relationship between human beings and plants are also very close. In addition, plants are important means of circumstances and production of human beings. Regrettably, the amazing development of human civilization has disturbed this balance to a greater extent than realized. It is one of the biggest duties of human beings to save the plants from various dangers. So, the diverseness of the plant community should be restored and put everything back to balance. The urgent situation is that many plants are at the risk of extinction. So, it is very necessary to set up a database for plant protection We believe that the first step is to teach a computer how to classify plants. 
   
@@ -9,7 +10,7 @@ Introduction
 Special Thanks To: EdjeElectronics, Sentdex
 	If you encounter any problems while doing this project please do refer the link given below for the solutions https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10 
 
-Steps
+# Steps
 
 1. Install TensorFlow-GPU 1.5 (skip this step if TensorFlow-GPU 1.5 is already installed)
 
@@ -39,8 +40,11 @@ Download the full repository located on this page (scroll to the top and click C
 Delete the following files (do not delete the folders):
 
 •	All files in \object_detection\images\train and \object_detection\images\test
+
 •	The “test_labels.csv” and “train_labels.csv” files in \object_detection\images
+
 •	All files in \object_detection\training
+
 •	All files in \object_detection\inference_graph
 
 Now, you are ready to start from scratch in training your own Plant detector. This tutorial will assume that all the files listed above were deleted and will go on to explain how to generate the files for your own training dataset.
