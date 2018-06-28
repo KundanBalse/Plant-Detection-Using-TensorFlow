@@ -154,6 +154,7 @@ Next, open the generate_tfrecord.py file in a text editor. Replace the label map
 For example, say you are training a classifier to detect basketballs, shirts, and shoes. You will replace the following code in generate_record.py:
 
 #To-do this replace with labelmap
+~~~
 def class_text_to_int(row_label):
     if row_label == 'common guava':
         return 1
@@ -167,6 +168,7 @@ def class_text_to_int(row_label):
         return 5
     else:
         None
+~~~
         
 Then, generate the TFRecord files by issuing these commands from the \object_detection folder:
 
@@ -183,6 +185,8 @@ These generate a train.record and a test.record file in \object_detection. These
 #### 5a. Label map
 
   The label map tells the trainer what each plant is by defining a mapping of class names to class ID numbers. Use a text editor to create a new file and save it as labelmap.pbtxt in the C:\tensorflow1\models\research\object_detection\training folder. (Make sure the file type is. pbtxt, not .txt!) In the text editor, copy or type in the label map in the format below (the example below is the label map for my Plant Detector):
+  
+~~~
   
 item {
   id: 1
@@ -205,6 +209,7 @@ item {
   name: 'sago cycad'
 }
 
+~~~
 The label map ID numbers should be the same as what is defined in the generate_tfrecord.py file.
 
 #### 5b. Configure training
