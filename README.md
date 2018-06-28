@@ -10,9 +10,9 @@ Plant identification based on leaf structure
 Special Thanks To: EdjeElectronics, Sentdex
 	If you encounter any problems while doing this project please do refer the link given below for the solutions https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10 
 
-# Steps
+## Steps
 
-1. Install TensorFlow-GPU 1.5 (skip this step if TensorFlow-GPU 1.5 is already installed)
+### 1. Install TensorFlow-GPU 1.5 (skip this step if TensorFlow-GPU 1.5 is already installed)
 
 Install TensorFlow-GPU by following the instructions in this YouTube Video by Mark Jay.
 
@@ -20,22 +20,24 @@ Install TensorFlow-GPU by following the instructions in this YouTube Video by Ma
   Be sure to install Anaconda with Python 3.6 as instructed in the video, as the Anaconda virtual environment will be used for the rest of this tutorial.
   Visit TensorFlow's website for further installation details, including how to install it on other operating systems (like Linux). The object detection repository itself also has installation instructions.
 
-2. Set up TensorFlow Directory and Anaconda Virtual Environment
+### 2. Set up TensorFlow Directory and Anaconda Virtual Environment
 
   The TensorFlow Object Detection API requires using the specific directory structure provided in its GitHub repository. It also requires several additional Python packages, specific additions to the PATH and PYTHONPATH variables, and a few extra setup commands to get everything set up to run or train an object detection model.
 This portion of the tutorial goes over the full set up required. It is fairly meticulous, but follow the instructions closely, because improper setup can cause unwieldy errors down the road.
 
-2a. Download TensorFlow Object Detection API repository from GitHub
+#### 2a. Download TensorFlow Object Detection API repository from GitHub
 
 Create a folder directly in C: and name it “tensorflow1”. This working directory will contain the full TensorFlow object detection framework, as well as your training images, training data, trained classifier, configuration files, and everything else needed for the object detection classifier.
 Download the full TensorFlow object detection repository located at https://github.com/tensorflow/models by clicking the “Clone or Download” button and downloading the zip file. Open the downloaded zip file and extract the “models-master” folder directly into the C:\tensorflow1 directory you just created. Rename “models-master” to just “models”. (Note, this tutorial was done using this GitHub commit of the TensorFlow Object Detection API. If portions of this tutorial do not work, it may be necessary to download and use this exact commit rather than the most up-to-date version.)
 
-2b. Download the ssd_mobilenet_v1_coco model from TensorFlow's model zoo(https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+#### 2b. Download the ssd_mobilenet_v1_coco model from TensorFlow's model zoo
+(https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
 
-TensorFlow provides several object detection models (pre-trained classifiers with specific neural network architectures) in its model zoo. Some models (such as the SSD-MobileNet model) have an architecture that allows for faster detection but with less accuracy, while some models (such as the Faster-RCNN model) give slower detection but with more accuracy. I initially started with the SSD-MobileNet-V1 model because my local machine(laptop) configurations is lower and I am training my dataset on CPU (no GPU). If you have the higher configuration laptop with decent NVDIA graphics card then you can make use of Faster-RCNN-Inception-V2 model, and the detection works considerably better, but with a noticeably slower speed.
-
-This tutorial will use the ssd_mobilenet_v1_coco model. Download the model here(http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz). Open the downloaded ssd_mobilenet_v1_coco file with a file archiver such as WinZip or 7-Zip and extract the ssd_mobilenet_v1_coco folder to the 
+TensorFlow provides several object detection models (pre-trained classifiers with specific neural network architectures) in its model zoo. Some models (such as the SSD-MobileNet model) have an architecture that allows for faster detection but with less accuracy, while some models (such as the Faster-RCNN model) give slower detection but with more accuracy. I initially started with the SSD-MobileNet-V1 model because my local machine(laptop) configurations is lower and I am training my dataset on CPU (no GPU). If you have the higher configuration laptop with decent NVDIA graphics card then you can make use of Faster-RCNN-Inception-V2 model, and the detection works considerably better, but with a noticeably slower speed. This tutorial will use the ssd_mobilenet_v1_coco model. Download the model here(http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz). Open the downloaded ssd_mobilenet_v1_coco file with a file archiver such as WinZip or 7-Zip and extract the ssd_mobilenet_v1_coco folder to the 
 C:\tensorflow1\models\research\object_detection folder. (Note: The model date and version will likely change in the future, but it should still work with this tutorial.)
+
+#### 2c. Download this tutorial's repository from GitHub
+
 Download the full repository located on this page (scroll to the top and click Clone or Download) and extract all the contents directly into the C:\tensorflow1\models\research\object_detection directory. (You can overwrite the existing "README.md" file.) This establishes a specific directory structure that will be used for the rest of the tutorial.
 Delete the following files (do not delete the folders):
 
@@ -48,7 +50,8 @@ Delete the following files (do not delete the folders):
 •	All files in \object_detection\inference_graph
 
 Now, you are ready to start from scratch in training your own Plant detector. This tutorial will assume that all the files listed above were deleted and will go on to explain how to generate the files for your own training dataset.
-2d. Set up new Anaconda virtual environment
+
+#### 2d. Set up new Anaconda virtual environment
 
 Next, we'll work on setting up a virtual environment in Anaconda for tensorflow. From the Start menu in Windows, search for the Anaconda Prompt utility, right click on it, and click “Run as Administrator”. If Windows asks you if you would like to allow it to make changes to your computer, click Yes.
 In the command terminal that pops up, create a new virtual environment called “tensorflow1” by issuing the following command:
@@ -83,7 +86,7 @@ Install the other necessary packages by issuing the following commands:
 
 (Note: The ‘pandas’ and ‘opencv-python’ packages are not needed by TensorFlow, but they are used in the Python scripts to generate TFRecords and to work with images, videos, and webcam feeds.)
 
-2e. Configure PYTHONPATH environment variable
+#### 2e. Configure PYTHONPATH environment variable
 
 A PYTHONPATH variable must be created that points to the \models, \models\research, and \models\research\slim directories. Do this by issuing the following commands (from any directory):
 
@@ -93,7 +96,7 @@ C:\tensorflow1\models\research\slim
 (Note: Every time the "tensorflow1" virtual environment is exited, the PYTHONPATH variable is reset and needs to be set up again.)
 
 
-2f. Compile Protobufs and run setup.py
+#### 2f. Compile Protobufs and run setup.py
 
 Next, compile the Protobuf files, which are used by TensorFlow to configure model and training parameters. Unfortunately, the short protoc compilation command posted on TensorFlow’s Object Detection API installation page does not work on Windows. Every .proto file in the \object_detection\protos directory must be called out individually by the command.
 In the Anaconda Command Prompt, change directories to the \models\research directory and copy and paste the following command into the command line and press Enter: 
@@ -108,7 +111,7 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
 
 (tensorflow1) C:\tensorflow1\models\research> python setup.py install
 
-2g. Test TensorFlow setup to verify it works
+#### 2g. Test TensorFlow setup to verify it works
 
   The TensorFlow Object Detection API is now all set up to use pre-trained models for object detection, or to train a new one. You can test it out and verify your installation is working by launching the object_detection_tutorial.ipynb script with Jupyter. From the \object_detection directory, issue this command:
   
@@ -118,11 +121,11 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
 (Note: part of the script downloads the ssd_mobilenet_v1 model from GitHub, which is about 74MB. This means it will take some time to complete the section, so be patient.)
   Once you have stepped all the way through the script, you should see two labelled images at the bottom section the page. If you see this, then everything is working properly! If not, the bottom section will report any errors encountered. See the Appendix for a list of errors I encountered while setting this up.
 
-3. Gather and Label Pictures
+### 3. Gather and Label Pictures
 
   Now that the TensorFlow Object Detection API is all set up and ready to go, we need to provide the images it will use to train a new detection classifier.
 
-3a. Gather Pictures
+#### 3a. Gather Pictures
 
   TensorFlow needs hundreds of images of an object to train a good detection classifier. To train a robust classifier, the training images should have random plants in the image along with the desired plants and should have a variety of backgrounds and lighting conditions. There should be some images where the desired plant is partially obscured, overlapped with something else, or only halfway in the picture.
   
@@ -131,7 +134,7 @@ Make sure the images aren’t too large. They should be less than 200KB each, an
 
   After you have all the pictures you need, move 20% of them to the \object_detection\images\test directory, and 80% of them to the \object_detection\images\train directory. Make sure there are a variety of pictures in both the \test and \train directories.
 
-3b. Label Pictures
+#### 3b. Label Pictures
 
   Here comes the fun part! With all the pictures gathered, it’s time to label the desired objects in every picture. LabelImg is a great tool for labeling images, and its GitHub page has very clear instructions on how to install and use it.
   
@@ -140,7 +143,7 @@ LabelImg download link
 Download and install LabelImg, point it to your \images\train directory, and then draw a box around each plant leaf in each image. Repeat the process for all the images in the \images\test directory. This will take a while!
 LabelImg saves a .xml file containing the label data for each image. These .xml files will be used to generate TFRecords, which are one of the inputs to the TensorFlow trainer. Once you have labeled and saved each image, there will be one .xml file for each image in the \test and \train directories.
 
-4. Generate Training Data
+### 4. Generate Training Data
 
   First, the image .xml data will be used to create .csv files containing all the data for the train and test images. From the \object_detection folder, issue the following command in the Anaconda command prompt:
   
@@ -174,11 +177,11 @@ Then, generate the TFRecord files by issuing these commands from the \object_det
 
 These generate a train.record and a test.record file in \object_detection. These will be used to train the new object detection classifier.
 
-5. Create Label Map and Configure Training
+### 5. Create Label Map and Configure Training
 
   The last thing to do before training is to create a label map and edit the training configuration file.
 
-5a. Label map
+#### 5a. Label map
 
   The label map tells the trainer what each plant is by defining a mapping of class names to class ID numbers. Use a text editor to create a new file and save it as labelmap.pbtxt in the C:\tensorflow1\models\research\object_detection\training folder. (Make sure the file type is. pbtxt, not .txt!) In the text editor, copy or type in the label map in the format below (the example below is the label map for my Plant Detector):
   
@@ -205,7 +208,7 @@ item {
 
 The label map ID numbers should be the same as what is defined in the generate_tfrecord.py file.
 
-5b. Configure training
+#### 5b. Configure training
 
   Finally, the object detection training pipeline must be configured. It defines which model and what parameters will be used for training. This is the last step before running training!
 Navigate to C:\tensorflow1\models\research\object_detection\samples\configs and copy the ssd_mobilenet_v1_pets.config file into the \object_detection\training directory. Then, open the file with a text editor. There are several changes to make to the .config file, mainly changing the number of classes and examples, and adding the file paths to the training data.
@@ -232,7 +235,7 @@ label_map_path: "C:/tensorflow1/models/research/object_detection/training/labelm
 
 Save the file after the changes have been made. That’s it! The training job is all configured and ready to go!
 
-6. Run the Training
+### 6. Run the Training
 
 Here we go! From the \object_detection directory, issue the following command to begin training:
 
@@ -248,7 +251,7 @@ You can view the progress of the training job by using TensorBoard. To do this, 
 This will create a webpage on your local machine at YourPCName:6006, which can be viewed through a web browser. The TensorBoard page provides information and graphs that show how the training is progressing. One important graph is the Loss graph, which shows the overall loss of the classifier over time.
 The training routine periodically saves checkpoints about every five minutes. You can terminate the training by pressing Ctrl+C while in the command prompt window. I typically wait until just after a checkpoint has been saved to terminate the training. You can terminate training and start it later, and it will restart from the last saved checkpoint. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.
 
-7. Export Inference Graph
+### 7. Export Inference Graph
 
   Now that training is complete, the last step is to generate the frozen inference graph (. pb file). From the \object_detection folder, issue the following command, where “XXXX” in “model.ckpt-XXXX” should be replaced with the highest-numbered .ckpt file in the training folder:
 
@@ -256,7 +259,7 @@ The training routine periodically saves checkpoints about every five minutes. Yo
 
 This creates a frozen_inference_graph.pb file in the \object_detection\inference_graph folder. The .pb file contains the object detection classifier.
 
-8. Use Your Newly Trained Object Detection Classifier!
+### 8. Use Your Newly Trained Object Detection Classifier!
 
   The Plant detector is all ready to go! I’ve written Python scripts to test it out on an image, video, or webcam feed.
 Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. (For my Plant Detector, there are 5 plants I want to detect, so NUM_CLASSES = 5.)
@@ -273,7 +276,7 @@ Appendix: Common Errors
 
 It appears that the TensorFlow Object Detection API was developed on a Linux-based operating system, and most of the directions given by the documentation are for a Linux OS. Trying to get a Linux-developed software library to work on Windows can be challenging. There are many little snags that I ran in to while trying to set up tensorflow-gpu to train an object detection classifier on Windows 10. This Appendix is a list of errors I ran in to, and their resolutions.
 
-1. ModuleNotFoundError: No module named 'deployment'
+# 1. ModuleNotFoundError: No module named 'deployment'
 
 This error occurs when you try to run object_detection_tutorial.ipynb or train.py and you don’t have the PATH and PYTHONPATH environment variables set up correctly. Exit the virtual environment
 by closing and re-opening the Anaconda Prompt window. Then, issue “activate tensorflow1” to re-enter the environment, and then issue the commands given in Step 2e.
@@ -283,17 +286,18 @@ Also, make sure you have run these commands from the \models\research directory:
 setup.py build
 setup.py install
 
-2. ImportError: cannot import name 'preprocessor_pb2'
+# 2. ImportError: cannot import name 'preprocessor_pb2'
 
 ImportError: cannot import name 'string_int_label_map_pb2'
 (or similar errors with other pb2 files)
 This occurs when the protobuf files (in this case, preprocessor.proto) have not been compiled. Re-run the protoc command given in Step 2f. Check the \object_detection\protos folder to make sure there is a name_pb2.py file for every name.proto file.
 
-3. object_detection/protos/.proto: No such file or directory
+# 3. object_detection/protos/.proto: No such file or directory
 
 This occurs when you try to run the
 “protoc object_detection/protos/*.proto --python_out=.”
 command given on the TensorFlow Object Detection API installation page. Sorry, it doesn’t work on Windows! Copy and paste the full command given in Step 2f instead. There’s probably a more graceful way to do it, but I don’t know what it is.
 
-4. Unsuccessful TensorSliceReader constructor: Failed to get "file path" … The filename, directory name, or volume label syntax is incorrect.This error occurs when the filepaths in the training configuration file (faster_rcnn_inception_v2_pets.config or similar) have not been entered with backslashes instead of forward slashes. Open the .config file and make sure all file paths are given in the following format: “C:/path/to/model.file”
+# 4. Unsuccessful TensorSliceReader constructor:Failed to get "file path" … The filename, directory name, or volume label syntax is incorrect.
+This error occurs when the filepaths in the training configuration file (faster_rcnn_inception_v2_pets.config or similar) have not been entered with backslashes instead of forward slashes. Open the .config file and make sure all file paths are given in the following format: “C:/path/to/model.file”
 
