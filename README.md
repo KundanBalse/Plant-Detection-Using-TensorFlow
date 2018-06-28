@@ -7,8 +7,10 @@ __Plant identification based on leaf structure__
   Plants exist everywhere we live, as well as places without us. Many of them carry significant information for the development of human society. The relationship between human beings and plants are also very close. In addition, plants are important means of circumstances and production of human beings. Regrettably, the amazing development of human civilization has disturbed this balance to a greater extent than realized. It is one of the biggest duties of human beings to save the plants from various dangers. So, the diverseness of the plant community should be restored and put everything back to balance. The urgent situation is that many plants are at the risk of extinction. So, it is very necessary to set up a database for plant protection We believe that the first step is to teach a computer how to classify plants. 
   
   The tutorial is written for Windows 10, and it will also work for Windows 7 and 8. The general procedure can also be used for Linux operating systems, but file paths and package installation commands will need to change accordingly.
-Special Thanks To: EdjeElectronics, Sentdex
-	If you encounter any problems while doing this project please do refer the link given below for the solutions https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10 
+
+__Special Thanks To: EdjeElectronics, Sentdex__
+
+If you encounter any problems while doing this project please do refer the link given below for the solutions https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10 
 
 ## Steps
 
@@ -89,8 +91,7 @@ Install the other necessary packages by issuing the following commands:
 
 A PYTHONPATH variable must be created that points to the \models, \models\research, and \models\research\slim directories. Do this by issuing the following commands (from any directory):
 
-(tensorflow1) C:\> set PYTHONPATH=C:\tensorflow1\models;C:\tensorflow1\models\research;
-C:\tensorflow1\models\research\slim
+	(tensorflow1) C:\> set PYTHONPATH=C:\tensorflow1\models;C:\tensorflow1\models\research;C:\tensorflow1\models\research\slim
 
 (Note: Every time the "tensorflow1" virtual environment is exited, the PYTHONPATH variable is reset and needs to be set up again.)
 
@@ -100,23 +101,23 @@ C:\tensorflow1\models\research\slim
 Next, compile the Protobuf files, which are used by TensorFlow to configure model and training parameters. Unfortunately, the short protoc compilation command posted on TensorFlow’s Object Detection API installation page does not work on Windows. Every .proto file in the \object_detection\protos directory must be called out individually by the command.
 In the Anaconda Command Prompt, change directories to the \models\research directory and copy and paste the following command into the command line and press Enter: 
 
-(protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto .\object_detection\protos\multiscale_anchor_generator.proto .\object_detection\protos\graph_rewriter.proto)
+	(protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto .\object_detection\protos\multiscale_anchor_generator.proto .\object_detection\protos\graph_rewriter.proto)
 
 This creates a name_pb2.py file from every name.proto file in the \object_detection\protos folder.
 (Note: TensorFlow occassionally adds new .proto files to the \protos folder. If you get an error saying ImportError: cannot import name 'something_something_pb2', you may need to update the protoc command to include the new .proto files.)
 Finally, run the following commands from the C:\tensorflow1\models\research directory:
 
-(tensorflow1) C:\tensorflow1\models\research> python setup.py build
+	(tensorflow1) C:\tensorflow1\models\research> python setup.py build
 
-(tensorflow1) C:\tensorflow1\models\research> python setup.py install
+	(tensorflow1) C:\tensorflow1\models\research> python setup.py install
 
 #### 2g. Test TensorFlow setup to verify it works
 
   The TensorFlow Object Detection API is now all set up to use pre-trained models for object detection, or to train a new one. You can test it out and verify your installation is working by launching the object_detection_tutorial.ipynb script with Jupyter. From the \object_detection directory, issue this command:
   
-(tensorflow1)C:\tensorflow1\models\research\object_detection>juprter notebook object_detection_tutorial.ipynb
+	(tensorflow1)C:\tensorflow1\models\research\object_detection>juprter notebook object_detection_tutorial.ipynb
 
-  This opens the script in your default web browser and allows you to step through the code one section at a time. You can step through each section by clicking the “Run” button in the upper toolbar. The section is done running when the “In [*]” text next to the section populates with a number.
+  This opens the script in your default web browser and allows you to step through the code one section at a time. You can step through each section by clicking the “Run” button in the upper toolbar. The section is done running when the “In [* ]” text next to the section populates with a number.
 (Note: part of the script downloads the ssd_mobilenet_v1 model from GitHub, which is about 74MB. This means it will take some time to complete the section, so be patient.)
   Once you have stepped all the way through the script, you should see two labelled images at the bottom section the page. If you see this, then everything is working properly! If not, the bottom section will report any errors encountered. See the Appendix for a list of errors I encountered while setting this up.
 
@@ -172,9 +173,9 @@ def class_text_to_int(row_label):
         
 Then, generate the TFRecord files by issuing these commands from the \object_detection folder:
 
-(python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record)
+	(python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record)
 
-(python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record)
+	(python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record)
 
 These generate a train.record and a test.record file in \object_detection. These will be used to train the new object detection classifier.
 
@@ -243,14 +244,14 @@ Save the file after the changes have been made. That’s it! The training job is
 
 Here we go! From the \object_detection directory, issue the following command to begin training:
 
-(python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/ ssd_mobilenet_v1_pets.config)
+	(python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/ ssd_mobilenet_v1_pets.config)
 
 If everything has been set up correctly, TensorFlow will initialize the training. The initialization can take up to 30 seconds before the actual training begins.
 
 Each step of training reports the loss. It will start high and get lower and lower as training progresses. For my training on the Faster-RCNN-Inception-V2 model, it started at about 3.0 and quickly dropped below 0.8. I recommend allowing your model to train until the loss consistently drops below 0.05, which will take about 40,000 steps, or about 2 hours (depending on how powerful your CPU and GPU are). Note: The loss numbers will be different if a different model is used. MobileNet-SSD starts with a loss of about 20 and should be trained until the loss is consistently under 2.
 You can view the progress of the training job by using TensorBoard. To do this, open a new instance of Anaconda Prompt, activate the tensorflow1 virtual environment, change to the C:\tensorflow1\models\research\object_detection directory, and issue the following command:
 
-(tensorflow1) C:\tensorflow1\models\research\object_detection>tensorboard --logdir=training
+	(tensorflow1) C:\tensorflow1\models\research\object_detection>tensorboard --logdir=training
 
 This will create a webpage on your local machine at YourPCName:6006, which can be viewed through a web browser. The TensorBoard page provides information and graphs that show how the training is progressing. One important graph is the Loss graph, which shows the overall loss of the classifier over time.
 The training routine periodically saves checkpoints about every five minutes. You can terminate the training by pressing Ctrl+C while in the command prompt window. I typically wait until just after a checkpoint has been saved to terminate the training. You can terminate training and start it later, and it will restart from the last saved checkpoint. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.
@@ -259,7 +260,7 @@ The training routine periodically saves checkpoints about every five minutes. Yo
 
   Now that training is complete, the last step is to generate the frozen inference graph (. pb file). From the \object_detection folder, issue the following command, where “XXXX” in “model.ckpt-XXXX” should be replaced with the highest-numbered .ckpt file in the training folder:
 
-(python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph)
+	(python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph)
 
 This creates a frozen_inference_graph.pb file in the \object_detection\inference_graph folder. The .pb file contains the object detection classifier.
 
