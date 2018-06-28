@@ -275,7 +275,7 @@ Appendix: Common Errors
 
 It appears that the TensorFlow Object Detection API was developed on a Linux-based operating system, and most of the directions given by the documentation are for a Linux OS. Trying to get a Linux-developed software library to work on Windows can be challenging. There are many little snags that I ran in to while trying to set up tensorflow-gpu to train an object detection classifier on Windows 10. This Appendix is a list of errors I ran in to, and their resolutions.
 
-# 1. ModuleNotFoundError: No module named 'deployment'
+__1. ModuleNotFoundError: No module named 'deployment'__
 
 This error occurs when you try to run object_detection_tutorial.ipynb or train.py and you don’t have the PATH and PYTHONPATH environment variables set up correctly. Exit the virtual environment
 by closing and re-opening the Anaconda Prompt window. Then, issue “activate tensorflow1” to re-enter the environment, and then issue the commands given in Step 2e.
@@ -285,18 +285,18 @@ Also, make sure you have run these commands from the \models\research directory:
 setup.py build
 setup.py install
 
-# 2. ImportError: cannot import name 'preprocessor_pb2'
+__2. ImportError: cannot import name 'preprocessor_pb2'__
 
 ImportError: cannot import name 'string_int_label_map_pb2'
 (or similar errors with other pb2 files)
 This occurs when the protobuf files (in this case, preprocessor.proto) have not been compiled. Re-run the protoc command given in Step 2f. Check the \object_detection\protos folder to make sure there is a name_pb2.py file for every name.proto file.
 
-# 3. object_detection/protos/.proto: No such file or directory
+__3. object_detection/protos/.proto: No such file or directory__
 
 This occurs when you try to run the
 “protoc object_detection/protos/*.proto --python_out=.”
 command given on the TensorFlow Object Detection API installation page. Sorry, it doesn’t work on Windows! Copy and paste the full command given in Step 2f instead. There’s probably a more graceful way to do it, but I don’t know what it is.
 
-# 4. Unsuccessful TensorSliceReader constructor:Failed to get "file path" … The filename, directory name, or volume label syntax is incorrect.
+__4. Unsuccessful TensorSliceReader constructor:Failed to get "file path" … The filename, directory name, or volume label syntax is incorrect.__
 This error occurs when the filepaths in the training configuration file (faster_rcnn_inception_v2_pets.config or similar) have not been entered with backslashes instead of forward slashes. Open the .config file and make sure all file paths are given in the following format: “C:/path/to/model.file”
 
