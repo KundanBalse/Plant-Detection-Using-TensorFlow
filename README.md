@@ -1,6 +1,6 @@
 # Plant-Detection-Using-TensorFlow
 
-Plant identification based on leaf structure
+__Plant identification based on leaf structure__
 
 ## Introduction 
 
@@ -298,5 +298,6 @@ This occurs when you try to run the
 command given on the TensorFlow Object Detection API installation page. Sorry, it doesn’t work on Windows! Copy and paste the full command given in Step 2f instead. There’s probably a more graceful way to do it, but I don’t know what it is.
 
 __4. Unsuccessful TensorSliceReader constructor:Failed to get "file path" … The filename, directory name, or volume label syntax is incorrect.__
+
 This error occurs when the filepaths in the training configuration file (faster_rcnn_inception_v2_pets.config or similar) have not been entered with backslashes instead of forward slashes. Open the .config file and make sure all file paths are given in the following format: “C:/path/to/model.file”
 
