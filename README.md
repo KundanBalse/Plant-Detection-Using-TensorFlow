@@ -138,10 +138,11 @@ Make sure the images aren’t too large. They should be less than 200KB each, an
 
   Here comes the fun part! With all the pictures gathered, it’s time to label the desired objects in every picture. LabelImg is a great tool for labeling images, and its GitHub page has very clear instructions on how to install and use it.
   
-LabelImg download link
+LabelImg download link (https://tzutalin.github.io/labelImg/)
 
 Download and install LabelImg, point it to your \images\train directory, and then draw a box around each plant leaf in each image. Repeat the process for all the images in the \images\test directory. This will take a while!
 LabelImg saves a .xml file containing the label data for each image. These .xml files will be used to generate TFRecords, which are one of the inputs to the TensorFlow trainer. Once you have labeled and saved each image, there will be one .xml file for each image in the \test and \train directories.
+<img src="https://github.com/KundanBalse/Plant-Detection-Using-TensorFlow/blob/master/Documents/tt.png">
 
 ### 4. Generate Training Data
 
