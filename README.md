@@ -265,6 +265,7 @@ The training routine periodically saves checkpoints about every five minutes. Yo
 	(python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph)
 
 This creates a frozen_inference_graph.pb file in the \object_detection\inference_graph folder. The .pb file contains the object detection classifier.
+<img src "https://github.com/KundanBalse/Plant-Detection-Using-TensorFlow/blob/master/Documents/dd.png">
 
 ### 8. Use Your Newly Trained Object Detection Classifier!
 
