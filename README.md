@@ -124,11 +124,14 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
 ### 3. Gather and Label Pictures
 
   Now that the TensorFlow Object Detection API is all set up and ready to go, we need to provide the images it will use to train a new detection classifier.
+ 
 
 #### 3a. Gather Pictures
 
   TensorFlow needs hundreds of images of an object to train a good detection classifier. To train a robust classifier, the training images should have random plants in the image along with the desired plants and should have a variety of backgrounds and lighting conditions. There should be some images where the desired plant is partially obscured, overlapped with something else, or only halfway in the picture.
   
+   <img src = "https://github.com/KundanBalse/Plant-Detection-Using-TensorFlow/blob/master/Documents/Documents.jpg">
+   
   For my plant Detection classifier, I have 5 different plants I want to detect (ivy tree, garden geranium, common guava, sago cycad, painters palette). I used my cell phone (Redmi note 4) to take about 80 pictures of each plant on its own, with various other non-desired objects in the pictures. And also, some images with overlapped leaves so that I can detect the plants effectively. Totally I took around 480 images of 5 different plants each having approx. 80 images.
 Make sure the images aren’t too large. They should be less than 200KB each, and their resolution shouldn’t be more than 720x1280. The larger the images are, the longer it will take to train the classifier. You can use the resizer.py script in this repository to reduce the size of the images.
 
