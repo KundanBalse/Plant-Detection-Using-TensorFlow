@@ -14,9 +14,9 @@ If you encounter any problems while doing this project please do refer the link 
 
 ## Steps
 
-### 1. Install TensorFlow-GPU 1.5 (skip this step if TensorFlow-GPU 1.5 is already installed) or TensorFlow-CPU
+### 1. Install TensorFlow (skip this step if TensorFlow-GPU 1.5 is already installed) or TensorFlow-CPU
 
-Install TensorFlow-GPU by following the instructions in this YouTube Video by Mark Jay.
+Install TensorFlow-GPU and CPU by following the instructions or you can follow YouTube Video by Mark Jay.
 
   The video is made for TensorFlow-GPU v1.4, but the “pip install --upgrade tensorflow-gpu or pip install --upgrade tensorflow (FOR CPU)” command will automatically download version 1.5. Download and install CUDA v9.0 and cuDNN v7.0 (rather than CUDA v8.0 and cuDNN v6.0 as instructed in the video), because they are supported by TensorFlow-GPU v1.5. As future versions of TensorFlow are released, you will likely need to continue updating the CUDA and cuDNN versions to the latest supported version.
   Be sure to install Anaconda with Python 3.6 as instructed in the video, as the Anaconda virtual environment will be used for the rest of this tutorial.
