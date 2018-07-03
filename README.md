@@ -40,6 +40,9 @@ C:\tensorflow1\models\research\object_detection folder. (Note: The model date an
 #### 2c. Download this tutorial's repository from GitHub
 
 Download the full repository located on this page (scroll to the top and click Clone or Download) and extract all the contents directly into the C:\tensorflow1\models\research\object_detection directory. (You can overwrite the existing "README.md" file.) This establishes a specific directory structure that will be used for the rest of the tutorial.
+
+link = (https://github.com/KundanBalse/Plant-Detection-Using-TensorFlow)
+
 Delete the following files (do not delete the folders):
 
 •	All files in \object_detection\images\train and \object_detection\images\test
@@ -123,12 +126,12 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
   
   
 
-### 3. Gather and Label Pictures
+### 3. Gather and Label Images
 
   Now that the TensorFlow Object Detection API is all set up and ready to go, we need to provide the images it will use to train a new detection classifier.
  
 
-#### 3a. Gather Pictures
+#### 3a. Collect Images
 
   TensorFlow needs hundreds of images of an object to train a good detection classifier. To train a robust classifier, the training images should have random plants in the image along with the desired plants and should have a variety of backgrounds and lighting conditions. There should be some images where the desired plant is partially obscured, overlapped with something else, or only halfway in the picture.
   
@@ -139,7 +142,7 @@ Make sure the images aren’t too large. They should be less than 200KB each, an
 
   After you have all the pictures you need, move 20% of them to the \object_detection\images\test directory, and 80% of them to the \object_detection\images\train directory. Make sure there are a variety of pictures in both the \test and \train directories.
 
-#### 3b. Label Pictures
+#### 3b. Label Images
 
   Here comes the fun part! With all the pictures gathered, it’s time to label the desired objects in every picture. LabelImg is a great tool for labeling images, and its GitHub page has very clear instructions on how to install and use it.
   
