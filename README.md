@@ -120,6 +120,8 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
   This opens the script in your default web browser and allows you to step through the code one section at a time. You can step through each section by clicking the “Run” button in the upper toolbar. The section is done running when the “In [* ]” text next to the section populates with a number.
 (Note: part of the script downloads the ssd_mobilenet_v1 model from GitHub, which is about 74MB. This means it will take some time to complete the section, so be patient.)
   Once you have stepped all the way through the script, you should see two labelled images at the bottom section the page. If you see this, then everything is working properly! If not, the bottom section will report any errors encountered. See the Appendix for a list of errors I encountered while setting this up.
+  
+  
 
 ### 3. Gather and Label Pictures
 
@@ -282,6 +284,10 @@ To run any of the scripts, type “idle” in the Anaconda Command Prompt (with 
 If everything is working properly, the object detector will initialize for about 10 seconds and then display a window showing any objects it’s detected in the image!
 
 If you encounter errors, please check out the Appendix: it has a list of errors that I ran in to while setting up my object detection classifier. You can also trying Googling the error. There is usually useful information on Stack Exchange or in TensorFlow’s Issues on GitHub.
+
+__link for Plant Identification in Real Time Video__ = (https://drive.google.com/open?id=1nc7SAEPdD5AvG17GJfKLj-O80X1QlmZO)
+
+<img src = "https://github.com/KundanBalse/Plant-Detection-Using-TensorFlow/blob/master/Documents/er.jpg">
 
 ### Appendix: Common Errors
 
